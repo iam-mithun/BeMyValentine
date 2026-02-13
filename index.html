@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Will You Be My Valentine? ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .valentine-box {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            padding: 80px 60px;
+            border-radius: 30px;
+            width: 90%;
+            max-width: 750px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            text-align: center;
+        }
+
+        .val-buttons {
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .val-buttons button {
+            width: 130px;
+            height: 60px;
+            border-radius: 40px;
+            font-size: 18px;
+            margin: 20px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .val-buttons button:hover {
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            position: absolute;
+        }
+
+        h1 {
+            font-size: 38px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="valentine-box">
+    <h1>Will You Be My Valentine? ❤️</h1>
+    <p>I promise I’ll try to be better… every single day.</p>
+
+    <div class="val-buttons">
+        <button id="yesBtn" onclick="goToHome()">YES 💖</button>
+        <button id="noBtn">NO 😢</button>
+    </div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+
+    let moveCount = 0;
+    const maxMoves = 4;
+
+    noBtn.addEventListener("mouseover", function () {
+
+        moveCount++;
+
+        if (moveCount < maxMoves) {
+
+            const box = document.querySelector(".valentine-box");
+            const boxRect = box.getBoundingClientRect();
+
+            const maxX = boxRect.width - 130;
+            const maxY = boxRect.height - 60;
+
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+
+            // YES grows slightly
+            yesBtn.style.transform = `scale(${1 + moveCount * 0.15})`;
+
+        } else {
+            // 4th hover → vanish
+            noBtn.style.display = "none";
+        }
+    });
+
+    function goToHome() {
+        window.location.href = "Valentine.html"; 
+    }
+</script>
+
+</body>
+</html>
